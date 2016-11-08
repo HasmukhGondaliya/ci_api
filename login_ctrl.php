@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 require_once APPPATH . '/libraries/REST_Controller.php';
 
-class Login_ctrl extends REST_Controller
+class Login_ctrl extends REST_Controller     //rest server in library
 {
     public function __construct()
     {
@@ -41,12 +41,12 @@ class Login_ctrl extends REST_Controller
     public function index(){
         $this->ProfileApi();
     }
-
+//profile function
     public function ProfileApi(){
         $result = $this->reg_model->ProfileApi();
         echo json_encode($result);
     }
-
+//login function
     public function LoginApi()
     {
         $username = $this->input->post('username');
@@ -60,15 +60,15 @@ class Login_ctrl extends REST_Controller
             echo "Login Failed Please try again...!";
             echo json_encode($result);
         }
-        //echo json_encode($result);
+       
     }
-
+//logout function
     public function LogoutApi(){
         $sess_array = array('username' => '');
         $this->session->unset_userdata('logged_in', $sess_array);
         echo "Logout Successfull..!";
     }
-
+//forgot password function
     public function Fpass()
     {
         $username = $this->input->post('username');
